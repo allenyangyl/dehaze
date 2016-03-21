@@ -15,7 +15,7 @@ omega = 0.95;
 t_ = Transmission(img, A, patch_size, omega);
 % step 3: soft matting - by Yilin Yang
 lambda = 1e-4;
-epsilon = 1e-5;
+epsilon = 1e-6;
 t = SoftMatting(img, t_, lambda, epsilon);
 % step 4: recover - by Yilin Yang
 t0 = 0.1;
