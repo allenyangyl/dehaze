@@ -8,9 +8,9 @@ img = imread(img_file);
 %% dehaze
 % step 1: atmospheric light - by Shiyu Dong
 alpha = 0.001;
-A = AtmosphericLight(img, alpha);
-% step 2: transmission - by Shiyu Dong
 patch_size = 15;
+A = AtmosphericLight(img, alpha, patch_size);
+% step 2: transmission - by Shiyu Dong
 omega = 0.95;
 t_ = Transmission(img, A, patch_size, omega);
 % step 3: soft matting - by Yilin Yang
