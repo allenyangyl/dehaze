@@ -1,3 +1,4 @@
+%% step 3: get Laplacian - by Yilin Yang
 function L = getLaplacian(img, epsilon, win_size)
 
 % |wk|
