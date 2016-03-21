@@ -1,5 +1,5 @@
 %% step 0: calculate dark channel - by Shiyu Dong
-function dark_channel = CalcDarkChannel(ori_img)
+function dark_channel = CalcDarkChannel(ori_img, patch_size)
 
 %ori_img = double(ori_img);
 
@@ -14,7 +14,7 @@ for i = 1: width
     end
 end
 
-blocksize = [15, 15];
+blocksize = [patch_size, patch_size];
 
 fun=@(block_struct)minblockfilter(block_struct.data);
 
