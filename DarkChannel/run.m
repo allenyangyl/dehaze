@@ -28,7 +28,8 @@ for i = 1 : 24
     t0 = 0.1;
     J = Recover(img, A, t, t0);
 %     imshow(J);
-    imwrite(J + 25, ['../results/', num2str(i), '_DarkChannel.jpg']);
+    intensity = 25
+    imwrite(J + intensity, ['../results/', num2str(i), '_DarkChannel.jpg']);
     time = toc;
     disp(['Image ', num2str(i), ' saved. Time: ', num2str(time), 's. ']);
 end
