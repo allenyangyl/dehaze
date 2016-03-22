@@ -4,11 +4,20 @@ function A = AtmosphericLight(img, alpha, patch_size)
 % calculate dark channel as a gray image
 dark_channel = CalcDarkChannel(img, patch_size);
 
-% brightness pixel value in the dark channel
-bright_value = max(dark_channel(:));
+% number of pixels
+numOfPixels = size(dark_channel,1)*size(dark_channel,2);
+numOfSamples = floor(numOfPixels*alpha);
 
-% choose the top 0.1% pixel position
-mask = dark_channel > bright_value*(1 - alpha);
+% sort pixel values
+[~, index] = sort(dark_channel(:));
+select_ind = find(index<=numOfSamples);
+[select_row, select_col] = ind2sub(size(dark_channel),select_ind);
+
+mask = zeros(size(dark_channel));
+
+for i = 1:length(select_row)
+    mask(select_row(i),select_col(i)) = 1;
+end
 
 % choose highest intensity in original image
 new_img = double(rgb2gray(img)).*mask;

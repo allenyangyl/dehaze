@@ -16,9 +16,7 @@ end
 
 blocksize = [patch_size, patch_size];
 
-fun=@(block_struct)minblockfilter(block_struct.data);
-
-filtered_img = blockproc(gray_img, blocksize, fun);
+filtered_img = minblockfilter(gray_img, blocksize);
 
 dark_channel = double(filtered_img);
 
@@ -26,10 +24,19 @@ dark_channel = double(filtered_img);
 
 end
 
-function filtered_img = minblockfilter(gray_img)
+function filtered_img = minblockfilter(gray_img, blocksize)
 
-filtered_img = zeros(size(gray_img));
+filtered_img = gray_img;
+width = size(gray_img, 1);
+length = size(gray_img, 2);
 
-filtered_img(:,:) = min(gray_img(:));
+for i = 1:width
+    for j = 1:length
+        %if i >= blocksize(1) && i<= width - blocksize(1) && j >= blocksize(2) && j <= length - blocksize(2)
+        patch_img = gray_img(max(1,i-blocksize(1)):min(width, i+blocksize(1)), max(1,j-blocksize(2)):min(length, j+blocksize(2)));
+        min_val = min(patch_img(:));
+        filtered_img(i,j) = min_val;
+    end
+end
 
 end

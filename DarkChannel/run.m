@@ -2,13 +2,13 @@
 clear; close all; clc;
 
 %% read image
-img_file = '../data/24.png';
+img_file = '../data/5.jpg';
 img = imread(img_file);
 
 %% dehaze
 % step 1: atmospheric light - by Shiyu Dong
 alpha = 0.001;
-patch_size = 15;
+patch_size = 7;
 A = AtmosphericLight(img, alpha, patch_size);
 % step 2: transmission - by Shiyu Dong
 omega = 0.95;
