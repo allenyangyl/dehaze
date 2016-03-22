@@ -35,7 +35,7 @@ for j = 1 : w
         vals(1 + len : neb_size ^ 2 +len) = tvals(:);
         len = len + neb_size ^ 2;
     end
-    disp(j);
+%     disp(j);
 end
 
 % create sparse matrix L
