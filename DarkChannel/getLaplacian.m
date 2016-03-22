@@ -18,7 +18,7 @@ for j = 1 : w
         % wk
         win_inds = indsM(ind_x, ind_y);
         win_inds = win_inds(:);
-        winI = double(img(ind_x, ind_y, :));
+        winI = im2double(img(ind_x, ind_y, :));
         winI = reshape(winI, neb_size, c);
         % mean
         Mean = mean(winI, 1)';
@@ -35,6 +35,7 @@ for j = 1 : w
         vals(1 + len : neb_size ^ 2 +len) = tvals(:);
         len = len + neb_size ^ 2;
     end
+    disp(j);
 end
 
 % create sparse matrix L
