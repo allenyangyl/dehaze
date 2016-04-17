@@ -11,7 +11,7 @@ import caffe
 import time
 
 # Image file name
-test_file = '12.jpg'
+test_file = '9.jpg'
 directory = '/home/yiliny1/Dehaze/data/'
 
 # Set up caffe model
@@ -38,8 +38,6 @@ image = transformer.preprocess('data', image_raw)
 net.blobs['data'].data[0] = image
 out = net.forward()
 transmission = net.blobs['bn3'].data[0]
-print(np.amax(transmission))
-print(np.amin(transmission))
 
 # Process transmission 
 transmission = np.transpose(transmission, (1,2,0))
