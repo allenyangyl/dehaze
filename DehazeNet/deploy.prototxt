@@ -1,44 +1,10 @@
 name: "DehazeNet"
-layer {
-  name: "data"
-  type: "ImageData"
-  top: "data"
-  top: "label"
-  include {
-    phase: TRAIN
-  }
-  transform_param {
-    mirror: true
-    mean_value: 127.5
-  }
-  image_data_param {
-    root_folder: "/home/yiliny1/Dehaze/DehazeNet/patches/"
-    source: "/home/yiliny1/Dehaze/DehazeNet/TrainLabels.txt"
-    batch_size: 128
-    new_height: 32
-    new_width: 32
-    shuffle: true
-  }
-}
-layer {
-  name: "data"
-  type: "ImageData"
-  top: "data"
-  top: "label"
-  include {
-    phase: TEST
-  }
-  transform_param {
-    mirror: false
-    mean_value: 127.5
-  }
-  image_data_param {
-    root_folder: "/home/yiliny1/Dehaze/DehazeNet/patches/"
-    source: "/home/yiliny1/Dehaze/DehazeNet/TestLabels.txt"
-    batch_size: 128
-    new_height: 32
-    new_width: 32
-  }
+input: "data"
+input_shape {
+  dim: 1
+  dim: 3
+  dim: 500
+  dim: 500
 }
 layer {
   name: "conv1A"
@@ -57,6 +23,7 @@ layer {
     num_output: 4
     kernel_size: 5
     stride: 1
+    pad: 15
     weight_filler {
       type: "gaussian"
       std: 0.001
@@ -84,6 +51,7 @@ layer {
     num_output: 4
     kernel_size: 5
     stride: 1
+    pad: 15
     weight_filler {
       type: "gaussian"
       std: 0.001
@@ -111,6 +79,7 @@ layer {
     num_output: 4
     kernel_size: 5
     stride: 1
+    pad: 15
     weight_filler {
       type: "gaussian"
       std: 0.001
@@ -138,6 +107,7 @@ layer {
     num_output: 4
     kernel_size: 5
     stride: 1
+    pad: 15
     weight_filler {
       type: "gaussian"
       std: 0.001
@@ -380,11 +350,4 @@ layer {
   type: "BReLU"
   bottom: "bn3"
   top: "bn3"
-}
-layer {
-  name: "loss"
-  type: "EuclideanLoss"
-  bottom: "bn3"
-  bottom: "label"
-  top: "loss"
 }
