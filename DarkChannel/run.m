@@ -4,17 +4,20 @@ clear; close all; clc;
 for i = 1 : 24
     tic;
     %% read image
-    if i == 24
-        img_file = ['../data/', num2str(i), '.png'];
-    else
-        img_file = ['../data/', num2str(i), '.jpg'];
+    try        
+        img_file = ['../data/', num2str(i), '.jpg'];        
+        img = imread(img_file);
+    catch
+        img_file = ['../data/', num2str(i), '.png'];        
+        img = imread(img_file);
     end
-    img = imread(img_file);
     img = imresize(img, [500, NaN]);
 
     %% dehaze
-    J = dehaze(img);
-    imwrite(J, ['../results/', num2str(i), '_DarkChannel.jpg']);
+    [J, t_, t] = dehaze(img);
+    imwrite(J, ['../results/', num2str(i), '_DarkChannel.png']);
+    imwrite(t_, ['../results/', num2str(i), '_DarkChannel_TransRaw.png']);
+    imwrite(t, ['../results/', num2str(i), '_DarkChannel_Trans.png']);
     time = toc;
     disp(['Image ', num2str(i), ' saved. Time: ', num2str(time), 's. ']);
 end
