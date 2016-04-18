@@ -1,4 +1,4 @@
-function J = dehaze(I)
+function [J, t_, t] = dehaze(I)
 
     %% dehaze
     % step 1: atmospheric light - by Shiyu Dong
