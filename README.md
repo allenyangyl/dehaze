@@ -17,7 +17,7 @@ The training and test labels are in "TrainLabels.txt" and "TestLabels.txt"
 Run "train.sh" to train DehazeNet  
 
 ## Data
-24 Some images for haze removal
+Some images for haze removal
 
 ## Results
-The results of these images using Dark Channel and DehazeNet
+The results of example images using Dark Channel and DehazeNet
