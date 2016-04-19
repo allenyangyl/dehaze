@@ -1,4 +1,4 @@
-# Dehaze 
+# Single Image Haze Removal 
 by Yilin Yang & Shiyu Dong
 
 ## DarkChannel
