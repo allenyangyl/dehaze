@@ -15,6 +15,7 @@ Run "Dehaze.sh" or "dehaze.py", "dehaze.m" to remove haze on example images
 The training and test patches are in folder "patches"  
 The training and test labels are in "TrainLabels.txt" and "TestLabels.txt"  
 Run "train.sh" to train DehazeNet  
+Run "test.py" to calculate MSE on synthesized test data
 
 ## Data
 Some images for haze removal
